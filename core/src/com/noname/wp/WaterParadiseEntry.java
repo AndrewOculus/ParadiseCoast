@@ -11,39 +11,47 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.noname.wp.PostEffectRenderer.Renderer;
+import com.noname.wp.go.GameObjectsPool;
 import com.noname.wp.go.Meduze;
 import com.noname.wp.render.RenderKit;
 
 public class WaterParadiseEntry extends ApplicationAdapter {
-	private SpriteBatch batch;
-	private Meduze meduzeObj;
 	
-	class MeduzeMapRenderer implements Renderer{
+	private SpriteBatch batch;
+	
+	class GameObjectRenderer implements Renderer{
 		@Override
 		public void prerender(float dt,Batch batch) {
-			meduzeObj.setPosition(Gdx.input.getX(), Gdx.input.getY());
-			meduzeObj.draw(batch);
-			meduzeObj.update(dt);
+			GameObjectsPool.prerender(dt, batch);
 		}
 
 		@Override
 		public void underwater(float dt, Batch batch) {
-			
+			GameObjectsPool.underwater(dt, batch);
 		}
 
 		@Override
 		public void abovewater(float dt, Batch batch) {
-
+			GameObjectsPool.underwater(dt, batch);
 		}	
 	};
 	
-	private MeduzeMapRenderer mmr = new MeduzeMapRenderer(); 
+	private GameObjectRenderer gor = new GameObjectRenderer(); 
 	
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		meduzeObj = new Meduze(new Texture("meduze.png"), 300 , 400);
-		PostEffectRenderer.setRenderer(mmr);
+		
+		Meduze meduze = new Meduze(RenderKit.get().getMeduze(), 300 , 400);
+		GameObjectsPool.addGameObject(meduze);
+		meduze = new Meduze(RenderKit.get().getMeduze(), 70 , 250);
+		GameObjectsPool.addGameObject(meduze);
+		meduze = new Meduze(RenderKit.get().getMeduze(), 120 , 390);
+		GameObjectsPool.addGameObject(meduze);
+		meduze = new Meduze(RenderKit.get().getMeduze(), 567 , 234);
+		GameObjectsPool.addGameObject(meduze);
+		
+		PostEffectRenderer.setRenderer(gor);
 	}
 
 	@Override

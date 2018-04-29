@@ -13,7 +13,7 @@ public class PostEffectRenderer {
 
 	private FrameBuffer frameBufferMap;
 	private Renderer renderer;
-	private 	ShaderProgram distortShader;
+	private ShaderProgram distortShader;
 	private static PostEffectRenderer instance;
 	private float timeGlobal = 0;
 	
@@ -66,6 +66,9 @@ public class PostEffectRenderer {
 		timeGlobal += dt;
 		Texture texture  = frameBufferMap.getColorBufferTexture();
 		distortShader.begin();
+		Texture noise = RenderKit.get().getNoise();
+		noise.bind(2);
+		distortShader.setUniformi("u_texture_noise", 2);
 		texture.bind(1);
 		distortShader.setUniformi("u_texture_displacement", 1);
 		Texture backgr = RenderKit.get().getBackground();

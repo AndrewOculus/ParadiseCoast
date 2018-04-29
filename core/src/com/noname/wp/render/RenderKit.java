@@ -9,7 +9,7 @@ public class RenderKit {
 	private static RenderKit instance;
 	private ShaderProgram distortShader;
 	private final String shaderPath = "shaders/";
-	private Texture background;
+	private Texture background , meduze, noise;
 	
 	public static RenderKit get()
 	{
@@ -23,7 +23,9 @@ public class RenderKit {
 		String vertexShader = Gdx.files.internal(shaderPath+"distort_vert.glsl").readString();
 		String fragmentShader = Gdx.files.internal(shaderPath+"distort_frag.glsl").readString();
 		distortShader = new ShaderProgram(vertexShader,fragmentShader);
-		background = new Texture(Gdx.files.internal("sand.png"));
+		background = new Texture(Gdx.files.internal("sand.jpg"));
+		meduze = new Texture(Gdx.files.internal("meduze.png"));
+		noise = new Texture(Gdx.files.internal("noise.png"));
 	}
 	public ShaderProgram getDistortShader() {
 		return distortShader;
@@ -31,5 +33,13 @@ public class RenderKit {
 	public Texture getBackground()
 	{
 		return background;
+	}
+	public Texture getMeduze()
+	{
+		return meduze;
+	}
+	public Texture getNoise()
+	{
+		return noise;
 	}
 }
