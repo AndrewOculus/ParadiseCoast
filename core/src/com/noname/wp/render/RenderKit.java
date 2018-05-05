@@ -9,7 +9,7 @@ public class RenderKit {
 	private static RenderKit instance;
 	private ShaderProgram distortShader;
 	private final String shaderPath = "shaders/";
-	private Texture background , meduze, noise;
+	private Texture background , meduze, noise ,seastar;
 	
 	public static RenderKit get()
 	{
@@ -26,6 +26,7 @@ public class RenderKit {
 		background = new Texture(Gdx.files.internal("sand.jpg"));
 		meduze = new Texture(Gdx.files.internal("meduze.png"));
 		noise = new Texture(Gdx.files.internal("noise.png"));
+		seastar = new Texture(Gdx.files.internal("sea-star.png"));
 	}
 	public ShaderProgram getDistortShader() {
 		return distortShader;
@@ -41,5 +42,9 @@ public class RenderKit {
 	public Texture getNoise()
 	{
 		return noise;
+	}
+	public Texture getSeastar()
+	{
+		return seastar;
 	}
 }

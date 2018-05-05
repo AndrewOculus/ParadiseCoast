@@ -13,6 +13,7 @@ import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.noname.wp.PostEffectRenderer.Renderer;
 import com.noname.wp.go.GameObjectsPool;
 import com.noname.wp.go.Meduze;
+import com.noname.wp.go.SeaStar;
 import com.noname.wp.render.RenderKit;
 
 public class WaterParadiseEntry extends ApplicationAdapter {
@@ -32,7 +33,7 @@ public class WaterParadiseEntry extends ApplicationAdapter {
 
 		@Override
 		public void abovewater(float dt, Batch batch) {
-			GameObjectsPool.underwater(dt, batch);
+			GameObjectsPool.abovewater(dt, batch);
 		}	
 	};
 	
@@ -50,7 +51,8 @@ public class WaterParadiseEntry extends ApplicationAdapter {
 		GameObjectsPool.addGameObject(meduze);
 		meduze = new Meduze(RenderKit.get().getMeduze(), 567 , 234);
 		GameObjectsPool.addGameObject(meduze);
-		
+		SeaStar seastar = new SeaStar(RenderKit.get().getSeastar(), 200 , 200 , 30);
+		GameObjectsPool.addGameObject(seastar);
 		PostEffectRenderer.setRenderer(gor);
 	}
 
@@ -58,7 +60,11 @@ public class WaterParadiseEntry extends ApplicationAdapter {
 	public void render () {
 		PostEffectRenderer.update(Gdx.graphics.getDeltaTime(), batch);
 	}
-	
+	@Override
+	public void resize(int width, int height) {
+		//create ();
+		super.resize(width, height);
+	}
 	@Override
 	public void dispose () {
 		batch.dispose();

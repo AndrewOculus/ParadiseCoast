@@ -8,7 +8,7 @@ import com.badlogic.gdx.math.Vector2;
 
 public class Meduze extends Sprite implements GameObject {
 
-	private float scaleMin = 0.2f ,scaleFactor = 0.1f ,  scaleSpeed = 70;
+	private float scaleMin = 0.1f ,scaleFactor = 0.02f ,  scaleSpeed = 70;
 	private float time;
 	private Vector2 velocity;
 	

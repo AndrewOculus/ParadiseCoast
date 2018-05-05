@@ -53,5 +53,6 @@ void main()
 		sun = clamp(sun , 0.0 , 1.0);
 		gl_FragColor = col*texture2D (u_texture, pos)+sun;
 	}
+	//gl_FragColor= texture2D (u_texture_displacement, pos);
 	
 }

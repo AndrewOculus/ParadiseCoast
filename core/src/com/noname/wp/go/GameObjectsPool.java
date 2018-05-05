@@ -39,14 +39,18 @@ public class GameObjectsPool {
 	}
 	private void under(float dt,Batch batch) {
 		for(GameObject go : gos ) {
-			if(go.renderType()==GameObjectType.under)
+			if(go.renderType()==GameObjectType.under) {
 				go.update(dt, batch);
+				}
 		}
 	}
 	private void above(float dt,Batch batch) {
 		for(GameObject go : gos ) {
 			if(go.renderType()==GameObjectType.above)
+			{
+				System.out.println("above");
 				go.update(dt, batch);
+			}
 		}
 	}
 }
